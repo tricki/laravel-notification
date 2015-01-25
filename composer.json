@@ -1,6 +1,9 @@
 {
     "name": "tricki/notification",
-    "description": "",
+    "description": "A basic user notification package for Laravel 4",
+    "keywords": ["laravel"],
+	"homepage": "https://github.com/tricki/Notification",
+	"license": "MIT",
     "authors": [
         {
             "name": "Thomas Rickenbach",
