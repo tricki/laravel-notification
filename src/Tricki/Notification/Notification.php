@@ -24,6 +24,17 @@ class Notification
 		return $namespace . camel_case($type) . 'Notification';
 	}
 
+	/**
+	 * Creates a notification and assigns it to some users
+	 *
+	 * @param string $type  The notification type
+	 * @param Model $sender The object that initiated the notification (a user, a group, a web service etc.)
+	 * @param Model|NULL $object An object that was changed (a post that has been liked).
+	 * @param mixed $users The user(s) which should receive this notification.
+	 * @param mixed|NULL $data Any additional data
+	 *
+	 * @return \Tricki\Notification\Models\Notification
+	 */
 	public function create($type, Model $sender, Model $object = NULL, $users = array(), $data = NULL)
 	{
 		$class = $this->getClass($type);
