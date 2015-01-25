@@ -3,7 +3,6 @@
 namespace Tricki\Notification;
 
 use Illuminate\Database\Eloquent\Model;
-use Tricki\Notification\Models\Notification as NotificationModel;
 
 /**
  * Description of Notification
