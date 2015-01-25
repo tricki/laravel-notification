@@ -26,7 +26,7 @@ class Notification
 
 	public function create($type, Model $sender, Model $object = NULL, $users = array(), $data = NULL)
 	{
-		$class = Notification::getClass($type);
+		$class = $this->getClass($type);
 		$notification = new $class();
 
 		if ($data)
