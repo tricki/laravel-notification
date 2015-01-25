@@ -15,13 +15,13 @@ class Notification
 
 	public function getClass($type)
 	{
+		if (empty($type))
+		{
+			throw new \Exception('No notification type given');
+		}
 		$namespace = \Illuminate\Support\Facades\Config::get('notification::namespace');
 		$namespace = join('\\', explode('\\', $namespace)) . '\\';
 
-		if (empty($type))
-		{
-			$type = self::$type;
-		}
 		return $namespace . camel_case($type) . 'Notification';
 	}
 
