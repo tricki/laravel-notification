@@ -54,7 +54,13 @@ to the namespace of your notification models.
 'namespace' => '\MyApp\Models\'
 ```
 
-### 4. Adding relationship to User
+### 4. Executing migration
+
+```bash
+php artisan migrate --package="tricki/laravel-notification"
+```
+
+### 5. Adding relationship to User
 
 Extend your User model with the following relationship:
 
