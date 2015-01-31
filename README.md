@@ -48,6 +48,12 @@ php artisan config:publish tricki/laravel-notification
 Set the `namespace` property of the newly created `app/config/packages/tricki/laravel-notification/config.php`
 to the namespace of your notification models.
 
+#### Example
+
+```php
+'namespace' => '\MyApp\Models\'
+```
+
 ### 4. Adding relationship to User
 
 Extend your User model with the following relationship:
