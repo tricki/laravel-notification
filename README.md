@@ -134,7 +134,8 @@ $unreadNotifications = $user->notifications()->unread()->get();
 Since the notifications are instances of your own models you can easily have different behavior or
 output for each notification type.
 
-####Example:
+#### Example:
+
 ```php
 <?php
 
