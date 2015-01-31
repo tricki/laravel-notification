@@ -5,7 +5,7 @@ A basic starting point for a flexible user notification system in Laravel 4.
 
 It is easily extendable with new notification types and leaves rendering completely up to you.
 
-This package only provides an extendable notification system without any controllers of views
+This package only provides an extendable notification system without any controllers or views
 since they are often very use case specific.
 
 I'm open to ideas for extending this package.
@@ -15,7 +15,7 @@ I'm open to ideas for extending this package.
 ### 1. Install with Composer
 
 ```bash
-composer require tricki/laravel-notification
+composer require tricki/laravel-notification:@dev
 ```
 
 This will update `composer.json` and install it into the `vendor/` directory.
@@ -23,7 +23,7 @@ This will update `composer.json` and install it into the `vendor/` directory.
 (See the [Packagist website](https://packagist.org/packages/tricki/laravel-notification) for a list of available version numbers and
 development releases.)
 
-### 2. Add to `config/app.php`
+### 2. Add to Providers in `config/app.php`
 
 ```php
     'providers' => [
@@ -37,15 +37,15 @@ This registers the package with Laravel and automatically creates an alias calle
 
 ### 3. Publishing config
 
-If your models are namespaced you will have to declare this in the configuration.
+If your models are namespaced you will have to declare this in the package configuration.
 
 Publish the package configuration using Artisan:
 
 ```bash
-php artisan config:publish tricki/notification
+php artisan config:publish tricki/laravel-notification
 ```
 
-And set the `namespace` property of the newly created `app/config/packages/tricki/config.php`
+Set the `namespace` property of the newly created `app/config/packages/tricki/laravel-notification/config.php`
 to the namespace of your notification models.
 
 ### 4. Adding relationship to User
@@ -69,7 +69,7 @@ You will need separate models for each type of notification. Some examples would
 be `PostLikedNotification` or `CommentPostedNotification`.
 
 These models define the unique behavior of each notification type like it's actions
-an rendering.
+and rendering.
 
 A minimal notification model looks like this:
 
@@ -81,14 +81,13 @@ class PostLikedNotification extends \Tricki\Notification\Models\Notification
 	public static $type = 'post_liked';
 }
 
-?>
 ```
 
 The type will be saved in the database to differentiate between different
 types. The class name **must** be the CamelCase version of this type and
 end with "Notification".
 
-> Rember to add the namespace of your notification models to this package's `config.php`.
+> Remeber to add the namespace of your notification models to this package's `config.php`.
 
 ### 2. Create a notification
 
@@ -97,7 +96,7 @@ Notifications can be created using `Notification::create`.
 The function takes 5 parameters:
 
  * **$type** string
-   The notification type (see 1. Define notification models)
+   The notification type (see [Define notification models](#1-define-notification-models))
  * **$sender** Model
    The object that initiated the notification (a user, a group, a web service etc.)
  * **$object** Model | NULL
@@ -107,9 +106,9 @@ The function takes 5 parameters:
  * **$data** mixed | NULL
    Any additional data you want to attach. This will be serialized into the database.
 
-### 3. Retreiving a user's notifications
+### 3. Retrieving a user's notifications
 
-You can get a collection of notifications sent to a user with the `notifications` relationship,
+You can get a collection of notifications sent to a user using the `notifications` relationship,
 which will return a collection of your notification models.
 
 You can easily get a collection of all notifications sent to a user:
