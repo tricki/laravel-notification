@@ -99,7 +99,7 @@ The type will be saved in the database to differentiate between different
 types. The class name **must** be the CamelCase version of this type and
 end with "Notification".
 
-> Remeber to add the namespace of your notification models to this package's `config.php`.
+> Remember to add the namespace of your notification models to this package's `config.php`.
 
 ### 2. Create a notification
 
