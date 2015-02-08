@@ -21,7 +21,7 @@ class Notification
 		$namespace = \Illuminate\Support\Facades\Config::get('notification::namespace');
 		$namespace = join('\\', explode('\\', $namespace)) . '\\';
 
-		return $namespace . camel_case($type) . 'Notification';
+		return $namespace . studly_case($type) . 'Notification';
 	}
 
 	/**
