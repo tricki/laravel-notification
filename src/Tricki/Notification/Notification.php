@@ -2,6 +2,7 @@
 
 namespace Tricki\Notification;
 
+use Config;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -18,7 +19,7 @@ class Notification
 		{
 			throw new \Exception('No notification type given');
 		}
-		$namespace = \Illuminate\Support\Facades\Config::get('notification::namespace');
+		$namespace = Config::get('laravel-notification::namespace');
 		$namespace = join('\\', explode('\\', $namespace)) . '\\';
 
 		return $namespace . studly_case($type) . 'Notification';

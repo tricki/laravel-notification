@@ -3,7 +3,8 @@
 namespace Tricki\Notification\Models;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
-use \Illuminate\Database\Eloquent\SoftDeletingTrait;
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
+use Config;
 
 /**
  * Description of Notification
