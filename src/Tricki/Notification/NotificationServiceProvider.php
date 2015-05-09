@@ -21,7 +21,7 @@ class NotificationServiceProvider extends ServiceProvider
 	 */
 	public function boot()
 	{
-		$this->package('tricki/notification');
+		$this->package('tricki/laravel-notification');
 	}
 
 	/**
