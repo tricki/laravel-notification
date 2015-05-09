@@ -51,7 +51,15 @@ class Notification
 			$notification->object()->associate($object);
 		}
 		$notification->save();
-		$notification->users()->saveMany($users);
+
+		$notification_users = array();
+		foreach($users as $user)
+		{
+			$notification_user = new Models\NotificationUser($notification);
+			$notification_user->user_id = $user->id;
+			$notification_users[] = $notification_user;
+		}
+		$notification->users()->saveMany($notification_users);
 
 		return $notification;
 	}

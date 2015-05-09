@@ -20,8 +20,13 @@ class Notification extends AbstractEloquent
 
 	public function users()
 	{
-		return $this->belongsToMany('User', 'notification_user', 'notification_id')->withTimestamps();
+		return $this->hasMany('Tricki\Notification\Models\NotificationUser', 'notification_id');
 	}
+
+	public function newPivot(\Eloquent $parent, array $attributes, $table, $exists)
+    {
+        return new NotificationUser($parent, $attributes, $table, $exists);
+    }
 
 	public function sender()
 	{
@@ -35,17 +40,12 @@ class Notification extends AbstractEloquent
 
 	public function scopeUnread($query)
 	{
-		return $query->wherePivot('read_at', NULL);
+		return $query->where('read_at', NULL);
 	}
 
 	public function scopeRead($query)
 	{
-		return $query->wherePivotNot('read_at', NULL);
-	}
-
-	public function newPivot(Eloquent $parent, array $attributes, $table, $exists)
-	{
-		return new NotificationUser($parent, $attributes, $table, $exists);
+		return $query->whereNotNull('read_at');
 	}
 
 	protected function isSubType()
