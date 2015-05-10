@@ -79,5 +79,17 @@ class NotificationUser extends Pivot
             
             return $this;
         }
+        public function setUnread()
+        {
+            $this->read_at = NULL;
+            $this->save();
+            
+            return $this;
+        }
+
+        public function render()
+        {
+            return $this->notification->render();
+        }
 
 }
