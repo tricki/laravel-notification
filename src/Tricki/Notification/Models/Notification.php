@@ -2,7 +2,7 @@
 
 namespace Tricki\Notification\Models;
 
-use Eloquent;
+use Event;
 
 /**
  * The main Notification class
@@ -17,6 +17,16 @@ class Notification extends AbstractEloquent
 	protected $table = 'notifications';
 
 	public static $type = '';
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function($model)
+        {
+            $responses = Event::fire('notification::created', array($model));
+        });
+    }
 
 	public function users()
 	{

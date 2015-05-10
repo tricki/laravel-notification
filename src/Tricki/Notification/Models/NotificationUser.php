@@ -5,6 +5,7 @@ namespace Tricki\Notification\Models;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 use Config;
+use Event;
 
 /**
  * Description of Notification
@@ -17,6 +18,8 @@ class NotificationUser extends Pivot
 	use SoftDeletingTrait;
 
 	protected $table = 'notification_user';
+	protected $foreignKey = 'notification_id';
+	protected $otherKey = 'user_id';
 	protected $dates = ['deleted_at'];
 	protected $visible = ['user_id', 'notification_id', 'created_at', 'updated_at',
 		'read_at'];
@@ -37,6 +40,11 @@ class NotificationUser extends Pivot
     public static function boot()
     {
         parent::boot();
+
+        static::created(function($model)
+        {
+            $responses = Event::fire('notification::assigned', array($model));
+        });
         
         static::saving(function($model)
         {
