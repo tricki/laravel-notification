@@ -33,6 +33,17 @@ class NotificationUser extends Pivot
 		}
 		parent::__construct($parent, $attributes, $table, $exists);
 	}
+
+    public static function boot()
+    {
+        parent::boot();
+        
+        static::saving(function($model)
+        {
+			$model->updateTimestamps();
+        });
+    }
+
 	public function user()
 	{
 		return $this->belongsTo(Config::get('auth.model'));
