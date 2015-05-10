@@ -8,9 +8,10 @@ use Config;
 use Event;
 
 /**
- * Description of Notification
+ * Handles assigning notification to users
  *
- * @author Thomas
+ * @author Thomas Rickenbach
+ * @package tricki/laravel-notification
  */
 class NotificationUser extends Pivot
 {
@@ -72,6 +73,11 @@ class NotificationUser extends Pivot
 		return $query->whereNotNull('user_notifications.read_at');
 	}
         
+        /**
+         * Mark the user notification as read
+         * 
+         * @return \Tricki\Notification\Models\NotificationUser
+         */
         public function setRead()
         {
             $this->read_at = new \DateTime();
@@ -79,6 +85,12 @@ class NotificationUser extends Pivot
             
             return $this;
         }
+        
+        /**
+         * Mark the user notification as unread
+         * 
+         * @return \Tricki\Notification\Models\NotificationUser
+         */
         public function setUnread()
         {
             $this->read_at = NULL;

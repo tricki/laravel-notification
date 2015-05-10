@@ -6,9 +6,10 @@ use Config;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Description of Notification
+ * Notification
  *
- * @author Thomas
+ * @author Thomas Rickenbach
+ * @package tricki/laravel-notification
  */
 class Notification
 {

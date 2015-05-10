@@ -8,6 +8,7 @@ use Event;
  * The main Notification class
  *
  * @author Thomas Rickenbach
+ * @package tricki/laravel-notification
  */
 class Notification extends AbstractEloquent
 {
