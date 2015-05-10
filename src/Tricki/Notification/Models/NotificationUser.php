@@ -70,7 +70,7 @@ class NotificationUser extends Pivot
 
     public function scopeRead($query)
     {
-        return $query->whereNotNull('user_notifications.read_at');
+        return $query->whereNotNull('notification_user.read_at');
     }
 
     /**
