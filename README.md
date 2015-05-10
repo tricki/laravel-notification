@@ -68,7 +68,7 @@ Extend your User model with the following relationship:
 
 	public function notifications()
 	{
-		return $this->belongsToMany('\Tricki\Notification\Models\Notification');
+		return $this->hasMany('\Tricki\Notification\Models\NotificationUser');
 	}
 
 ```
