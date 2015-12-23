@@ -12,7 +12,7 @@ class MakeReadAtNullable extends Migration {
 	 */
 	public function up()
 	{
-		DB::statement('ALTER TABLE `notification_user` MODIFY `read_at` TIMESTAMP NULL DEFAULT NULL;');
+		DB::statement('ALTER TABLE `'.DB::getTablePrefix().'notification_user` MODIFY `read_at` TIMESTAMP NULL DEFAULT NULL;');
 	}
 
 	/**
@@ -22,7 +22,7 @@ class MakeReadAtNullable extends Migration {
 	 */
 	public function down()
 	{
-		DB::statement('ALTER TABLE `notification_user` MODIFY `read_at` TIMESTAMP NOT NULL DEFAULT  \'0000-00-00 00:00:00\';');
+		DB::statement('ALTER TABLE `'.DB::getTablePrefix().'notification_user` MODIFY `read_at` TIMESTAMP NOT NULL DEFAULT  \'0000-00-00 00:00:00\';');
 	}
 
 }
